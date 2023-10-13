@@ -44,7 +44,8 @@
     public typealias Image = NSImage
 
     public extension Image {
-        convenience init(systemName: String) {
+        @available(macOS 11.0, *)
+        convenience init?(systemName: String) {
             self.init(systemSymbolName: systemName, accessibilityDescription: nil)
         }
     }
