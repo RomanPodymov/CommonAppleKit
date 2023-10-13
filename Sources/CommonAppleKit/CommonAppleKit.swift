@@ -15,6 +15,7 @@
     public typealias TabBarController = UITabBarController
     public typealias Button = UIButton
     public typealias TextField = UITextField
+    public typealias Image = UIImage
 
     public extension TextField {
         var stringValue: String {
@@ -40,6 +41,13 @@
     public typealias TabBarController = NSTabViewController
     public typealias Button = NSButton
     public typealias TextField = NSTextField
+    public typealias Image = NSImage
+
+    public extension Image {
+        convenience init(systemName: String) {
+            self.init(systemSymbolName: systemName, accessibilityDescription: nil)
+        }
+    }
 
     public extension Button {
         func setTitleForAllStates(_ title: String) {
