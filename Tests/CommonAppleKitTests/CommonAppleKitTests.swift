@@ -11,11 +11,19 @@ import XCTest
 
 final class CommonAppleKitTests: XCTestCase {
     func testButton() {
-        let button = Button()
+        let button = CAButton()
         button.addTargetForPrimaryActionTriggered(self, action: #selector(Self.onButtonTap))
     }
 
     @objc private func onButtonTap() {
 
+    }
+
+    func testTabBarController() {
+        let tabBarController = CATabBarController()
+        tabBarController.viewControllers = [
+            .init(),
+            .init()
+        ]
     }
 }
