@@ -9,9 +9,9 @@
 import XCTest
 @testable import CommonAppleKit
 
-private final class ControllerA: UIViewController { }
+private final class ControllerA: CAViewController { }
 
-private final class ControllerB: UIViewController { }
+private final class ControllerB: CAViewController { }
 
 final class CommonAppleKitTests: XCTestCase {
     func testButton() {
