@@ -14,14 +14,22 @@ let package = Package(
     products: [
         .library(
             name: "CommonAppleKit",
-            targets: ["CommonAppleKit"]),
+            targets: ["CommonAppleKit"]
+        ),
     ],
     
     dependencies: [],
     targets: [
         .target(
             name: "CommonAppleKit",
-            dependencies: [])
+            dependencies: []
+        ),
+        .testTarget(
+            name: "CommonAppleKitTests",
+            dependencies: [
+                .target(name: "CommonAppleKit")
+            ]
+        )
     ],
     swiftLanguageVersions: [.v5]
 )
