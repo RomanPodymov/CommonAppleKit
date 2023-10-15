@@ -9,6 +9,9 @@ jobs:
   test:
     name: CommonAppleKitTests
     runs-on: macos-13
+    strategy:
+      matrix:
+        platform: [iOS, tvOS, macOS]
     steps:
       - name: Checkout
         uses: actions/checkout@v1
@@ -19,7 +22,7 @@ jobs:
       - name: Tests
         uses: mxcl/xcodebuild@v2.0
         with:
-          platform: iOS
+          platform: ${{ matrix.platform }}
           scheme: CommonAppleKit
           action: test
           code-coverage: false

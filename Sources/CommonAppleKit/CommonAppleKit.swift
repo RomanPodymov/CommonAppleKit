@@ -9,21 +9,21 @@
 #if canImport(UIKit)
     import UIKit
 
-    public typealias ViewController = UIViewController
-    public typealias ApplicationDelegate = UIApplicationDelegate
-    public typealias AppDelegateBaseClass = UIResponder
-    public typealias TabBarController = UITabBarController
-    public typealias Button = UIButton
-    public typealias TextField = UITextField
-    public typealias Image = UIImage
+    public typealias CAViewController = UIViewController
+    public typealias CAApplicationDelegate = UIApplicationDelegate
+    public typealias CAAppDelegateBaseClass = UIResponder
+    public typealias CATabBarController = UITabBarController
+    public typealias CAButton = UIButton
+    public typealias CATextField = UITextField
+    public typealias CAImage = UIImage
 
-    public extension TextField {
+    public extension CATextField {
         var stringValue: String {
             text ?? ""
         }
     }
 
-    public extension Button {
+    public extension CAButton {
         func addTargetForPrimaryActionTriggered(
             _ target: AnyObject,
             action: Selector
@@ -35,22 +35,22 @@
 #elseif canImport(AppKit)
     import AppKit
 
-    public typealias ViewController = NSViewController
-    public typealias ApplicationDelegate = NSApplicationDelegate
-    public typealias AppDelegateBaseClass = NSObject
-    public typealias TabBarController = NSTabViewController
-    public typealias Button = NSButton
-    public typealias TextField = NSTextField
-    public typealias Image = NSImage
+    public typealias CAViewController = NSViewController
+    public typealias CAApplicationDelegate = NSApplicationDelegate
+    public typealias CAAppDelegateBaseClass = NSObject
+    public typealias CATabBarController = NSTabViewController
+    public typealias CAButton = NSButton
+    public typealias CATextField = NSTextField
+    public typealias CAImage = NSImage
 
-    public extension Image {
+    public extension CAImage {
         @available(macOS 11.0, *)
         convenience init?(systemName: String) {
             self.init(systemSymbolName: systemName, accessibilityDescription: nil)
         }
     }
 
-    public extension Button {
+    public extension CAButton {
         func setTitleForAllStates(_ title: String) {
             self.title = title
         }
@@ -64,7 +64,7 @@
         }
     }
 
-    public extension TabBarController {
+    public extension CATabBarController {
         var viewControllers: [ViewController] {
             get {
                 tabViewItems.compactMap(\.viewController)

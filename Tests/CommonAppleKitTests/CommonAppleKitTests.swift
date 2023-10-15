@@ -10,7 +10,12 @@ import XCTest
 @testable import CommonAppleKit
 
 final class CommonAppleKitTests: XCTestCase {
-    func test() {
-        
+    func testButton() {
+        let button = Button()
+        button.addTargetForPrimaryActionTriggered(self, action: #selector(Self.onButtonTap))
+    }
+
+    @objc private func onButtonTap() {
+
     }
 }
