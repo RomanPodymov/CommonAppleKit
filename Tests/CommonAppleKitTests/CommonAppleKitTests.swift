@@ -9,6 +9,10 @@
 import XCTest
 @testable import CommonAppleKit
 
+private final class ControllerA: UIViewController { }
+
+private final class ControllerB: UIViewController { }
+
 final class CommonAppleKitTests: XCTestCase {
     func testButton() {
         let button = CAButton()
@@ -22,8 +26,12 @@ final class CommonAppleKitTests: XCTestCase {
     func testTabBarController() {
         let tabBarController = CATabBarController()
         tabBarController.viewControllers = [
-            .init(),
-            .init()
+            ControllerA(),
+            ControllerB()
         ]
+        XCTAssertEqual([
+            ControllerA(),
+            ControllerB()
+        ], tabBarController.viewControllers)
     }
 }
