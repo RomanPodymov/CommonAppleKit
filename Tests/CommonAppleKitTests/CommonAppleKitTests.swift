@@ -25,13 +25,11 @@ final class CommonAppleKitTests: XCTestCase {
 
     func testTabBarController() {
         let tabBarController = CATabBarController()
-        tabBarController.viewControllers = [
+        let viewControllers = [
             ControllerA(),
             ControllerB()
         ]
-        XCTAssertEqual([
-            ControllerA(),
-            ControllerB()
-        ], tabBarController.viewControllers)
+        tabBarController.viewControllers = viewControllers
+        XCTAssertEqual(viewControllers, tabBarController.viewControllers)
     }
 }
