@@ -16,5 +16,11 @@ jobs:
         uses: maxim-lobanov/setup-xcode@v1.6.0
         with:
           xcode-version: 15.0
-      - name: Build
-        run: swift build -v
+      - name: Tests
+        uses: mxcl/xcodebuild@v2.0
+        with:
+          platform: iOS
+          scheme: CommonAppleKit
+          action: test
+          code-coverage: false
+          verbosity: xcpretty
