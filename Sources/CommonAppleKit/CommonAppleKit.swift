@@ -65,7 +65,7 @@
     }
 
     public extension CATabBarController {
-        var viewControllers: [ViewController] {
+        var viewControllers: [CAViewController] {
             get {
                 tabViewItems.compactMap(\.viewController)
             }
