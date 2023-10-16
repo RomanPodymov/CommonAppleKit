@@ -16,6 +16,10 @@
     public typealias CAButton = UIButton
     public typealias CATextField = UITextField
     public typealias CAImage = UIImage
+    public typealias CAScrollView = UIScrollView
+    public typealias CACollectionView = UICollectionView
+    public typealias CACollectionViewCell = UICollectionViewCell
+    public typealias CALabel = UILabel
 
     public extension CATextField {
         var stringValue: String {
@@ -30,6 +34,10 @@
         ) {
             addTarget(target, action: action, for: .primaryActionTriggered)
         }
+
+        func actions(for target: Any) -> [String] {
+            actions(forTarget: target, forControlEvent: .primaryActionTriggered) ?? []
+        }
     }
 
 #elseif canImport(AppKit)
@@ -42,6 +50,10 @@
     public typealias CAButton = NSButton
     public typealias CATextField = NSTextField
     public typealias CAImage = NSImage
+    public typealias CAScrollView = NSScrollView
+    public typealias CACollectionView = NSCollectionView
+    public typealias CACollectionViewCell = NSCollectionViewItem
+    public typealias CALabel = NSTextField
 
     public extension CAImage {
         @available(macOS 11.0, *)
@@ -61,6 +73,12 @@
         ) {
             self.target = target
             self.action = action
+        }
+
+        func actions(for target: Any) -> [String] {
+            [action].compactMap {
+                $0?.description
+            }
         }
     }
 

@@ -16,7 +16,10 @@ private final class ControllerB: CAViewController { }
 final class CommonAppleKitTests: XCTestCase {
     func testButton() {
         let button = CAButton()
-        button.addTargetForPrimaryActionTriggered(self, action: #selector(Self.onButtonTap))
+        let selector = #selector(Self.onButtonTap)
+        button.addTargetForPrimaryActionTriggered(self, action: selector)
+        let actions = button.actions(for: self)
+        XCTAssertEqual([selector].map { $0.description }, actions)
     }
 
     @objc private func onButtonTap() {
