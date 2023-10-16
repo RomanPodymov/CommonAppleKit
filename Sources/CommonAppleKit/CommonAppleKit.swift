@@ -20,6 +20,10 @@
     public typealias CACollectionView = UICollectionView
     public typealias CACollectionViewCell = UICollectionViewCell
     public typealias CALabel = UILabel
+    public typealias CACollectionViewDataSource = UICollectionViewDataSource
+    public typealias CACollectionViewDelegate = UICollectionViewDelegate
+    public typealias CACollectionViewDelegateFlowLayout = UICollectionViewDelegateFlowLayout
+    public typealias CACollectionViewLayout = UICollectionViewLayout
 
     public extension CATextField {
         var stringValue: String {
@@ -54,6 +58,10 @@
     public typealias CACollectionView = NSCollectionView
     public typealias CACollectionViewCell = NSCollectionViewItem
     public typealias CALabel = NSTextField
+    public typealias CACollectionViewDataSource = NSCollectionViewDataSource
+    public typealias CACollectionViewDelegate = NSCollectionViewDelegate
+    public typealias CACollectionViewDelegateFlowLayout = NSCollectionViewDelegateFlowLayout
+    public typealias CACollectionViewLayout = NSCollectionViewLayout
 
     public extension CAImage {
         @available(macOS 11.0, *)
@@ -93,6 +101,20 @@
                     .init(viewController: $0)
                 }
             }
+        }
+    }
+
+    public extension CACollectionView {
+        convenience init(frame: CGRect, collectionViewLayout: CACollectionViewLayout) {
+            self.init(frame: frame)
+            self.collectionViewLayout = collectionViewLayout
+        }
+
+        func register(
+            _ cellClass: AnyClass?,
+            forCellWithReuseIdentifier identifier: String
+        ) {
+            register(cellClass, forItemWithIdentifier: .init(identifier))
         }
     }
 #endif

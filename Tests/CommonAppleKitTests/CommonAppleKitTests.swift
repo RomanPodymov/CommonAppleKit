@@ -35,4 +35,32 @@ final class CommonAppleKitTests: XCTestCase {
         tabBarController.viewControllers = viewControllers
         XCTAssertEqual(viewControllers, tabBarController.viewControllers)
     }
+
+    func testCollectionView() {
+        let layout = CACollectionViewLayout()
+        let collectionView = CACollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.register(CACollectionViewCell.self, forCellWithReuseIdentifier: "id")
+        collectionView.dataSource = self
+        collectionView.delegate = self
+    }
 }
+
+extension CommonAppleKitTests: CACollectionViewDataSource {
+    func collectionView(_ collectionView: CACollectionView, numberOfItemsInSection section: Int) -> Int {
+        0
+    }
+    
+    #if canImport(UIKit)
+    func collectionView(_ collectionView: CACollectionView, cellForItemAt indexPath: IndexPath) -> CACollectionViewCell {
+        fatalError()
+    }
+    #else
+    func collectionView(_ collectionView: CACollectionView, itemForRepresentedObjectAt indexPath: IndexPath) -> CACollectionViewCell {
+        fatalError()
+    }
+    #endif
+}
+
+extension CommonAppleKitTests: CACollectionViewDelegate { }
+
+extension CommonAppleKitTests: CACollectionViewDelegateFlowLayout { }
