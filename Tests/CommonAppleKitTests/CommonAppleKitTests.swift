@@ -37,7 +37,7 @@ final class CommonAppleKitTests: XCTestCase {
     }
 
     func testCollectionView() {
-        let layout = CACollectionViewLayout()
+        let layout = CACollectionViewFlowLayout()
         let collectionView = CACollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.register(CACollectionViewCell.self, forCellWithReuseIdentifier: "id")
         collectionView.dataSource = self
