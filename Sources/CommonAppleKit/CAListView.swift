@@ -1,5 +1,5 @@
 //
-//  ListView.swift
+//  CAListView.swift
 //  CommonAppleKit
 //
 //  Created by Roman Podymov on 18/10/2023.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-public final class ListView<Cell: ListViewCell>: CACollectionView, CACollectionViewDataSource {
+open class CAListView<Cell: CAListViewCell>: CACollectionView, CACollectionViewDataSource {
     private let cellId: String
 
     #if canImport(UIKit)
@@ -37,7 +37,7 @@ public final class ListView<Cell: ListViewCell>: CACollectionView, CACollectionV
         #endif
     }
 
-    required init?(coder _: NSCoder) {
+    required public init?(coder _: NSCoder) {
         nil
     }
 
@@ -52,7 +52,7 @@ public final class ListView<Cell: ListViewCell>: CACollectionView, CACollectionV
     #elseif canImport(UIKit)
     public func collectionView(_ collectionView: CACollectionView, cellForItemAt indexPath: IndexPath) -> CACollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath)
-        (cell as? ListViewCell)?.representedObject = content[indexPath.item]
+        (cell as? CAListViewCell)?.representedObject = content[indexPath.item]
         return cell
     }
     #endif

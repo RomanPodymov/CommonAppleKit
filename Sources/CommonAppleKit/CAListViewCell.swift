@@ -1,5 +1,5 @@
 //
-//  ListViewCell.swift
+//  CAListViewCell.swift
 //  CommonAppleKit
 //
 //  Created by Roman Podymov on 18/10/2023.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-open class ListViewCell: CACollectionViewCell {
+open class CAListViewCell: CACollectionViewCell {
     #if canImport(UIKit)
     open var representedObject: Any?
     #endif
