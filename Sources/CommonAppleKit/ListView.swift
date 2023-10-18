@@ -12,7 +12,7 @@ public final class ListView<Cell: ListViewCell>: CACollectionView, CACollectionV
     private let cellId: String
 
     #if canImport(UIKit)
-    var content: [Any] = [] {
+    public var content: [Any] = [] {
         didSet {
             reloadData()
         }

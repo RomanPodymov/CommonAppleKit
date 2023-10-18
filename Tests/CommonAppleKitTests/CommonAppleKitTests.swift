@@ -7,7 +7,7 @@
 //
 
 import XCTest
-@testable import CommonAppleKit
+import CommonAppleKit
 
 private final class ControllerA: CAViewController { }
 
