@@ -37,11 +37,16 @@ final class CommonAppleKitTests: XCTestCase {
     }
 
     func testCollectionView() {
-        let layout = CACollectionViewFlowLayout()
+        let layout: CACollectionViewLayout = CACollectionViewFlowLayout()
         let collectionView = CACollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.register(CACollectionViewCell.self, forCellWithReuseIdentifier: "id")
         collectionView.dataSource = self
         collectionView.delegate = self
+    }
+
+    func testListView() {
+        let collectionView = ListView<CACollectionViewCell>(frame: .zero, itemSize: .init(width: 200, height: 100), cellId: "id")
+        collectionView.content = []
     }
 }
 
