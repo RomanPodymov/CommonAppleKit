@@ -13,6 +13,8 @@ private final class ControllerA: CAViewController { }
 
 private final class ControllerB: CAViewController { }
 
+private final class CellA: ListViewCell { }
+
 final class CommonAppleKitTests: XCTestCase {
     func testButton() {
         let button = CAButton()
@@ -45,7 +47,7 @@ final class CommonAppleKitTests: XCTestCase {
     }
 
     func testListView() {
-        let collectionView = ListView<CACollectionViewCell>(frame: .zero, itemSize: .init(width: 200, height: 100), cellId: "id")
+        let collectionView = ListView<CellA>(frame: .zero, itemSize: .init(width: 200, height: 100), cellId: "id")
         collectionView.content = []
     }
 }

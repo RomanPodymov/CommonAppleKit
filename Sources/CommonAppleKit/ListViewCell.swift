@@ -9,5 +9,7 @@
 import Foundation
 
 open class ListViewCell: CACollectionViewCell {
+    #if canImport(UIKit)
     open var representedObject: Any?
+    #endif
 }
