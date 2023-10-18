@@ -8,7 +8,9 @@
 
 import Foundation
 
-public final class ListView<Cell: CACollectionViewCell>: CACollectionView, CACollectionViewDataSource {
+public final class ListView<Cell: ListViewCell>: CACollectionView, CACollectionViewDataSource {
+    private let cellId: String
+
     #if canImport(UIKit)
     var content: [Any] = [] {
         didSet {
@@ -18,6 +20,7 @@ public final class ListView<Cell: CACollectionViewCell>: CACollectionView, CACol
     #endif
 
     public init(frame: CGRect, itemSize: CGSize, cellId: String) {
+        self.cellId = cellId
         let layout = CACollectionViewFlowLayout()
         layout.itemSize = itemSize
         #if canImport(AppKit)
@@ -48,7 +51,9 @@ public final class ListView<Cell: CACollectionViewCell>: CACollectionView, CACol
     }
     #elseif canImport(UIKit)
     public func collectionView(_ collectionView: CACollectionView, cellForItemAt indexPath: IndexPath) -> CACollectionViewCell {
-        fatalError()
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath)
+        (cell as? ListViewCell)?.representedObject = content[indexPath.item]
+        return cell
     }
     #endif
 }
