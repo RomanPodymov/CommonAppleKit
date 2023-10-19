@@ -9,6 +9,7 @@
 #if canImport(UIKit)
     import UIKit
 
+    public typealias CAView = UIView
     public typealias CAViewController = UIViewController
     public typealias CAApplicationDelegate = UIApplicationDelegate
     public typealias CAAppDelegateBaseClass = UIResponder
@@ -48,6 +49,7 @@
 #elseif canImport(AppKit)
     import AppKit
 
+    public typealias CAView = NSView
     public typealias CAViewController = NSViewController
     public typealias CAApplicationDelegate = NSApplicationDelegate
     public typealias CAAppDelegateBaseClass = NSObject

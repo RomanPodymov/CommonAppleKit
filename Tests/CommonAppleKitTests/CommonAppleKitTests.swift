@@ -70,6 +70,10 @@ extension CommonAppleKitTests: CACollectionViewDataSource {
     func collectionView(_ collectionView: CACollectionView, itemForRepresentedObjectAt indexPath: IndexPath) -> CACollectionViewCell {
         fatalError()
     }
+
+    func collectionView(_: CACollectionView, willDisplay item: CACollectionViewCell, forRepresentedObjectAt _: IndexPath) {
+
+    }
     #endif
 }
 
