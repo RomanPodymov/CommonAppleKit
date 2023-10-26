@@ -27,6 +27,7 @@
     public typealias CACollectionViewLayout = UICollectionViewLayout
     public typealias CACollectionViewFlowLayout = UICollectionViewFlowLayout
     public typealias CAColor = UIColor
+    public typealias CAWindow = UIWindow
 
     public extension CATextField {
         var stringValue: String {
@@ -68,6 +69,7 @@
     public typealias CACollectionViewLayout = NSCollectionViewLayout
     public typealias CACollectionViewFlowLayout = NSCollectionViewFlowLayout
     public typealias CAColor = NSColor
+    public typealias CAWindow = NSWindow
 
     public extension CAImage {
         @available(macOS 11.0, *)
@@ -121,6 +123,18 @@
             forCellWithReuseIdentifier identifier: String
         ) {
             register(cellClass, forItemWithIdentifier: .init(identifier))
+        }
+    }
+
+    public extension CAWindow {
+        var rootViewController: CAViewController? {
+            get {
+                contentViewController
+            }
+
+            set {
+                contentViewController = newValue
+            }
         }
     }
 #endif
