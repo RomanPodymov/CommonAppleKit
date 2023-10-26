@@ -26,6 +26,7 @@
     public typealias CACollectionViewDelegateFlowLayout = UICollectionViewDelegateFlowLayout
     public typealias CACollectionViewLayout = UICollectionViewLayout
     public typealias CACollectionViewFlowLayout = UICollectionViewFlowLayout
+    public typealias CAColor = UIColor
 
     public extension CATextField {
         var stringValue: String {
@@ -66,6 +67,7 @@
     public typealias CACollectionViewDelegateFlowLayout = NSCollectionViewDelegateFlowLayout
     public typealias CACollectionViewLayout = NSCollectionViewLayout
     public typealias CACollectionViewFlowLayout = NSCollectionViewFlowLayout
+    public typealias CAColor = NSColor
 
     public extension CAImage {
         @available(macOS 11.0, *)
