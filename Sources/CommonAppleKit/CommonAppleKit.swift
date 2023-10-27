@@ -35,6 +35,18 @@
         }
     }
 
+    public extension CALabel {
+        var stringValue: String {
+            get {
+                text ?? ""
+            }
+            
+            set {
+                text = newValue
+            }
+        }
+    }
+
     public extension CAButton {
         func addTargetForPrimaryActionTriggered(
             _ target: AnyObject,
