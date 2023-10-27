@@ -9,5 +9,5 @@
 import Foundation
 
 open class CAAppDelegate: CAAppDelegateBaseClass, CAApplicationDelegate {
-    open var window: CAWindow!
+    open var window: CAWindow?
 }
