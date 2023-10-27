@@ -28,6 +28,7 @@
     public typealias CACollectionViewFlowLayout = UICollectionViewFlowLayout
     public typealias CAColor = UIColor
     public typealias CAWindow = UIWindow
+    public typealias CARect = CGRect
 
     public extension CATextField {
         var stringValue: String {
@@ -82,6 +83,7 @@
     public typealias CACollectionViewFlowLayout = NSCollectionViewFlowLayout
     public typealias CAColor = NSColor
     public typealias CAWindow = NSWindow
+    public typealias CARect = NSRect
 
     public extension CAImage {
         @available(macOS 11.0, *)
