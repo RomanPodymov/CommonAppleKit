@@ -15,6 +15,24 @@ private final class ControllerB: CAViewController { }
 
 private final class CellA: CAListViewCell { }
 
+private final class ViewA: CAView {
+    override init(frame: CARect) {
+        super.init(frame: frame)
+
+        addSubview(CALabel())
+        addSubview(CATextField())
+        #if canImport(AppKit)
+        layer?.backgroundColor = CAColor.red.cgColor
+        #elseif canImport(UIKit)
+        backgroundColor = CAColor.red
+        #endif
+    }
+    
+    required init?(coder: NSCoder) {
+        nil
+    }
+}
+
 final class CommonAppleKitTests: XCTestCase {
     func testButton() {
         let button = CAButton()
@@ -36,6 +54,13 @@ final class CommonAppleKitTests: XCTestCase {
         ]
         tabBarController.viewControllers = viewControllers
         XCTAssertEqual(viewControllers, tabBarController.viewControllers)
+    }
+
+    func testView() {
+        let view = ViewA(frame: .zero)
+
+        XCTAssertTrue(view.subviews.contains { $0 is CALabel })
+        XCTAssertTrue(view.subviews.contains { $0 is CATextField })
     }
 
     func testCollectionView() {
