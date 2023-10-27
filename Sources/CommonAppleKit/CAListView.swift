@@ -8,7 +8,7 @@
 
 import Foundation
 
-open class CAListView<Cell: CAListViewCell>: CACollectionView, CACollectionViewDataSource {
+open class CAListView<Cell: CAListViewCell>: CACollectionView, CACollectionViewDataSource, CACollectionViewDelegate {
     private let cellId: String
 
     #if canImport(UIKit)
@@ -35,6 +35,7 @@ open class CAListView<Cell: CAListViewCell>: CACollectionView, CACollectionViewD
         #if canImport(UIKit)
             dataSource = self
         #endif
+        delegate = self
     }
 
     required public init?(coder _: NSCoder) {
@@ -49,7 +50,15 @@ open class CAListView<Cell: CAListViewCell>: CACollectionView, CACollectionViewD
     public func collectionView(_ collectionView: CACollectionView, itemForRepresentedObjectAt indexPath: IndexPath) -> CACollectionViewCell {
         fatalError()
     }
+
+    public func collectionView(_ collectionView: CACollectionView, willDisplay item: CACollectionViewCell, forRepresentedObjectAt indexPath: IndexPath) {
+
+    }
     #elseif canImport(UIKit)
+    public func collectionView(_ collectionView: CACollectionView, didSelectItemAt indexPath: IndexPath) {
+
+    }
+
     public func collectionView(_ collectionView: CACollectionView, cellForItemAt indexPath: IndexPath) -> CACollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath)
         (cell as? CAListViewCell)?.representedObject = content[indexPath.item]
