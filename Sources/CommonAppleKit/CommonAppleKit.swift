@@ -33,7 +33,13 @@
 
     public extension CATextField {
         var stringValue: String {
-            text ?? ""
+            get {
+                text ?? ""
+            }
+
+            set {
+                text = newValue
+            }
         }
     }
 
@@ -86,6 +92,18 @@
     public typealias CAColor = NSColor
     public typealias CAWindow = NSWindow
     public typealias CARect = NSRect
+
+    public extension CATextField {
+        var placeholder: String {
+            set {
+                placeholderString = newValue
+            }
+
+            get {
+                placeholderString ?? ""
+            }
+        }
+    }
 
     public extension CAImage {
         @available(macOS 11.0, *)

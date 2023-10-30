@@ -35,6 +35,14 @@ private final class ViewA: CAView {
 }
 
 final class CommonAppleKitTests: XCTestCase {
+    func testTextField() {
+        let textField = CATextField()
+        textField.stringValue = "Hello"
+        textField.placeholder = "world"
+        XCTAssertEqual(textField.stringValue, "Hello")
+        XCTAssertEqual(textField.placeholder, "world")
+    }
+
     func testButton() {
         let button = CAButton()
         let selector = #selector(Self.onButtonTap)
