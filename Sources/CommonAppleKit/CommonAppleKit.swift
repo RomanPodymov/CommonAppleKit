@@ -16,6 +16,7 @@
     public typealias CATabBarController = UITabBarController
     public typealias CAButton = UIButton
     public typealias CATextField = UITextField
+    public typealias CASecureTextField = UITextField
     public typealias CAImage = UIImage
     public typealias CAScrollView = UIScrollView
     public typealias CACollectionView = UICollectionView
@@ -71,6 +72,7 @@
     public typealias CATabBarController = NSTabViewController
     public typealias CAButton = NSButton
     public typealias CATextField = NSTextField
+    public typealias CASecureTextField = NSSecureTextField
     public typealias CAImage = NSImage
     public typealias CAScrollView = NSScrollView
     public typealias CACollectionView = NSCollectionView

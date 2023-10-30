@@ -21,6 +21,7 @@ private final class ViewA: CAView {
 
         addSubview(CALabel())
         addSubview(CATextField())
+        addSubview(CASecureTextField())
         #if canImport(AppKit)
         layer?.backgroundColor = CAColor.red.cgColor
         #elseif canImport(UIKit)
@@ -61,6 +62,7 @@ final class CommonAppleKitTests: XCTestCase {
 
         XCTAssertTrue(view.subviews.contains { $0 is CALabel })
         XCTAssertTrue(view.subviews.contains { $0 is CATextField })
+        XCTAssertTrue(view.subviews.contains { $0 is CASecureTextField })
     }
 
     func testCollectionView() {
