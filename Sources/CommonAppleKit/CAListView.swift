@@ -8,7 +8,7 @@
 
 import Foundation
 
-open class CAListView<Cell: CAListViewCell>: CACollectionView, CACollectionViewDataSource, CACollectionViewDelegate {
+open class CAListView<Cell: CAListViewCell<CellRootView>, CellRootView>: CACollectionView, CACollectionViewDataSource, CACollectionViewDelegate {
     private let cellId: String
 
     #if canImport(UIKit)
