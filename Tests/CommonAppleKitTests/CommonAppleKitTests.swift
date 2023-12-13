@@ -13,7 +13,9 @@ private final class ControllerA: CAViewController { }
 
 private final class ControllerB: CAViewController { }
 
-private final class CellA: CAListViewCell { }
+private final class CellA: CAListViewCell<CellARootView> { }
+
+private final class CellARootView: CAView { }
 
 private final class ViewA: CAView {
     override init(frame: CARect) {
@@ -82,12 +84,12 @@ final class CommonAppleKitTests: XCTestCase {
     }
 
     func testListView() {
-        let listView = CAListView<CellA>(frame: .zero, itemSize: .init(width: 200, height: 100), cellId: "id")
+        let listView = CAListView<CellA, CellARootView>(frame: .zero, itemSize: .init(width: 200, height: 100), cellId: "id")
         listView.content = []
     }
 
     func testScrollableListView() {
-        let listView = CAScrollableListView<CellA>(frame: .zero, itemSize: .init(width: 200, height: 100), cellId: "id")
+        let listView = CAScrollableListView<CellA, CellARootView>(frame: .zero, itemSize: .init(width: 200, height: 100), cellId: "id")
         listView.content = []
     }
 }

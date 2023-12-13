@@ -17,8 +17,9 @@ open class CAListViewCell<RootView: CAView>: CACollectionViewCell {
 
     #if canImport(AppKit)
         open override func loadView() {
-            view = createRootView()
-            rootView = view
+            let rootView = createRootView()
+            view = rootView
+            self.rootView = rootView
         }
     #elseif canImport(UIKit)
         open var representedObject: Any?
