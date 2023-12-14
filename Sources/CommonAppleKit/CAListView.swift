@@ -19,7 +19,7 @@ open class CAListView<Cell: CAListViewCell<CellRootView>, CellRootView>: CAColle
     }
     #endif
 
-    public init(frame: CGRect, itemSize: CGSize, cellId: String) {
+    public init(frame: CGRect, itemSize: CGSize, cellId: String = String(describing: Cell.self)) {
         self.cellId = cellId
         let layout = CACollectionViewFlowLayout()
         layout.itemSize = itemSize
@@ -57,7 +57,7 @@ open class CAListView<Cell: CAListViewCell<CellRootView>, CellRootView>: CAColle
 
     public func collectionView(_ collectionView: CACollectionView, cellForItemAt indexPath: IndexPath) -> CACollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath)
-        (cell as? CAListViewCell)?.representedObject = content[indexPath.item]
+        (cell as? Cell)?.representedObject = content[indexPath.item]
         return cell
     }
     #endif

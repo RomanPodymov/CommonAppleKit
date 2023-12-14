@@ -89,7 +89,7 @@ final class CommonAppleKitTests: XCTestCase {
     }
 
     func testScrollableListView() {
-        let listView = CAScrollableListView<CellA, CellARootView>(frame: .zero, itemSize: .init(width: 200, height: 100), cellId: "id")
+        let listView = CAScrollableListView<CellA, CellARootView>(frame: .zero, itemSize: .init(width: 200, height: 100))
         listView.content = []
     }
 }

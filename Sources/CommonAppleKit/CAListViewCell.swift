@@ -11,13 +11,13 @@ import Foundation
 open class CAListViewCell<RootView: CAView>: CACollectionViewCell {
     public unowned var rootView: RootView!
 
-    open func createRootView() -> RootView {
-        RootView(frame: .zero)
+    open func createRootView(frame: CARect) -> RootView {
+        RootView(frame: frame)
     }
 
     #if canImport(AppKit)
         open override func loadView() {
-            let rootView = createRootView()
+            let rootView = createRootView(frame: frame)
             view = rootView
             self.rootView = rootView
         }
@@ -27,7 +27,7 @@ open class CAListViewCell<RootView: CAView>: CACollectionViewCell {
         override init(frame: CGRect) {
             super.init(frame: frame)
 
-            let rootView = createRootView()
+            let rootView = createRootView(frame: frame)
             contentView.addSubview(rootView)
             self.rootView = rootView
             rootView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor).isActive = true
