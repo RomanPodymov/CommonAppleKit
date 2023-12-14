@@ -17,7 +17,7 @@ open class CAListViewCell<RootView: CAView>: CACollectionViewCell {
 
     #if canImport(AppKit)
         open override func loadView() {
-            let rootView = createRootView(frame: frame)
+            let rootView = createRootView(frame: .zero)
             view = rootView
             self.rootView = rootView
         }

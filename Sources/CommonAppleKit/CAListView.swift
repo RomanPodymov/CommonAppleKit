@@ -19,7 +19,7 @@ open class CAListView<Cell: CAListViewCell<CellRootView>, CellRootView>: CAColle
     }
     #endif
 
-    public init(frame: CGRect, itemSize: CGSize, cellId: String = String(describing: Cell.self)) {
+    public init(frame: CGRect, itemSize: CGSize, cellId: String = .init(describing: Cell.self)) {
         self.cellId = cellId
         let layout = CACollectionViewFlowLayout()
         layout.itemSize = itemSize
