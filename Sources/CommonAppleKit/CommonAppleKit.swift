@@ -30,6 +30,7 @@
     public typealias CAColor = UIColor
     public typealias CAWindow = UIWindow
     public typealias CARect = CGRect
+    public typealias CALayoutGuide = UILayoutGuide
 
     public extension CATextField {
         var stringValue: String {
@@ -92,6 +93,7 @@
     public typealias CAColor = NSColor
     public typealias CAWindow = NSWindow
     public typealias CARect = NSRect
+    public typealias CALayoutGuide = NSLayoutGuide
 
     public extension CATextField {
         var placeholder: String {
