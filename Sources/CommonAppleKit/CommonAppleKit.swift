@@ -57,6 +57,22 @@
     }
 
     public extension CAButton {
+        private static var states: [UIControl.State] {
+            [.normal, .selected, .highlighted, .disabled, .focused]
+        }
+
+        func setTitle(_ title: String) {
+            Self.states.forEach { state in
+                setTitle(title, for: state)
+            }
+        }
+
+        func setImage(_ image: CAImage) {
+            Self.states.forEach { state in
+                setImage(image, for: state)
+            }
+        }
+
         func addTargetForPrimaryActionTriggered(
             _ target: AnyObject,
             action: Selector
@@ -115,8 +131,12 @@
     }
 
     public extension CAButton {
-        func setTitleForAllStates(_ title: String) {
+        func setTitle(_ title: String) {
             self.title = title
+        }
+
+        func setImage(_ image: CAImage) {
+            self.image = image
         }
 
         func addTargetForPrimaryActionTriggered(
@@ -174,3 +194,19 @@
         }
     }
 #endif
+
+public extension CAButton {
+    func setSystemImage(_ systemName: String) {
+        let image: CAImage?
+        if #available(macOS 11.0, iOS 13.0, tvOS 13.0, *) {
+            image = CAImage(systemName: systemName)
+        } else {
+            image = nil
+        }
+        if let image {
+            setImage(image)
+        } else {
+            setTitle(systemName)
+        }
+    }
+}
