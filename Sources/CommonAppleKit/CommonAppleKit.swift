@@ -85,6 +85,19 @@
         }
     }
 
+    public extension CAViewController {
+        func present(_ viewControllerToPresent: CAViewController) {
+            present(viewControllerToPresent, animated: true)
+        }
+
+        var presentedViewControllers: [CAViewController]? {
+            presentedViewController.map { [$0] }
+        }
+
+        func dismiss(_ viewController: CAViewController) {
+            viewController.dismiss(animated: true)
+        }
+    }
 #elseif canImport(AppKit)
     import AppKit
 
@@ -155,15 +168,15 @@
     }
 
     public extension CATabBarController {
-        var viewControllers: [CAViewController] {
+        var viewControllers: [CAViewController]? {
             get {
                 tabViewItems.compactMap(\.viewController)
             }
 
             set {
-                tabViewItems = newValue.map {
+                tabViewItems = newValue?.map {
                     .init(viewController: $0)
-                }
+                } ?? []
             }
         }
     }
@@ -191,6 +204,12 @@
             set {
                 contentViewController = newValue
             }
+        }
+    }
+
+    public extension CAViewController {
+        func present(_ viewControllerToPresent: CAViewController) {
+            presentAsModalWindow(viewControllerToPresent)
         }
     }
 #endif
