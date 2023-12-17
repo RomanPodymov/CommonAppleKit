@@ -28,6 +28,7 @@ open class CAListViewCell<RootView: CAView>: CACollectionViewCell {
             super.init(frame: frame)
 
             let rootView = createRootView(frame: frame)
+            rootView.translatesAutoresizingMaskIntoConstraints = false
             contentView.addSubview(rootView)
             self.rootView = rootView
             rootView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor).isActive = true
