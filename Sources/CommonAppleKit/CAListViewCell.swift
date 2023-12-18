@@ -8,8 +8,13 @@
 
 import Foundation
 
+public protocol CAListViewCellDelegate: AnyObject {
+    func onAction(data: Any?)
+}
+
 open class CAListViewCell<RootView: CAView>: CACollectionViewCell {
     public unowned var rootView: RootView!
+    public weak var delegate: CAListViewCellDelegate?
 
     open func createRootView(frame: CARect) -> RootView {
         RootView(frame: frame)

@@ -16,9 +16,9 @@ open class CAScrollableListView<Cell: CAListViewCell<CellRootView>, CellRootView
         }
     }
 
-    public init(frame: CGRect, itemSize: CGSize, cellId: String = .init(describing: Cell.self)) {
+    public init(frame: CGRect, itemSize: CGSize, cellId: String = .init(describing: Cell.self), cellDelegate: CAListViewCellDelegate? = nil) {
         super.init(frame: frame)
-        let listView = CAListView<Cell, CellRootView>(frame: frame, itemSize: itemSize, cellId: cellId)
+        let listView = CAListView<Cell, CellRootView>(frame: frame, itemSize: itemSize, cellId: cellId, cellDelegate: cellDelegate)
         documentView = listView
     }
     

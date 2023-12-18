@@ -10,6 +10,7 @@ import Foundation
 
 open class CAListView<Cell: CAListViewCell<CellRootView>, CellRootView>: CACollectionView, CACollectionViewDataSource, CACollectionViewDelegate {
     private let cellId: String
+    private weak var cellDelegate: CAListViewCellDelegate?
 
     #if canImport(UIKit)
     public var content: [Any] = [] {
@@ -19,8 +20,9 @@ open class CAListView<Cell: CAListViewCell<CellRootView>, CellRootView>: CAColle
     }
     #endif
 
-    public init(frame: CGRect, itemSize: CGSize, cellId: String = .init(describing: Cell.self)) {
+    public init(frame: CGRect, itemSize: CGSize, cellId: String = .init(describing: Cell.self), cellDelegate: CAListViewCellDelegate? = nil) {
         self.cellId = cellId
+        self.cellDelegate = cellDelegate
         let layout = CACollectionViewFlowLayout()
         layout.itemSize = itemSize
         #if canImport(AppKit)
@@ -32,9 +34,9 @@ open class CAListView<Cell: CAListViewCell<CellRootView>, CellRootView>: CAColle
 
         register(Cell.self, forCellWithReuseIdentifier: cellId)
 
+        delegate = self
         #if canImport(UIKit)
             dataSource = self
-            delegate = self
         #endif
     }
 
@@ -50,6 +52,14 @@ open class CAListView<Cell: CAListViewCell<CellRootView>, CellRootView>: CAColle
     public func collectionView(_ collectionView: CACollectionView, itemForRepresentedObjectAt indexPath: IndexPath) -> CACollectionViewCell {
         fatalError()
     }
+
+    public func collectionView(_ collectionView: CACollectionView, willDisplay cell: CACollectionViewCell, forRepresentedObjectAt indexPath: IndexPath) {
+        (cell as? Cell)?.delegate = cellDelegate
+    }
+
+    public func collectionView(_ collectionView: CACollectionView, didEndDisplaying item: CACollectionViewCell, forRepresentedObjectAt indexPath: IndexPath) {
+
+    }
     #elseif canImport(UIKit)
     public func collectionView(_ collectionView: CACollectionView, didSelectItemAt indexPath: IndexPath) {
 
@@ -57,6 +67,7 @@ open class CAListView<Cell: CAListViewCell<CellRootView>, CellRootView>: CAColle
 
     public func collectionView(_ collectionView: CACollectionView, cellForItemAt indexPath: IndexPath) -> CACollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath)
+        (cell as? Cell)?.delegate = cellDelegate
         (cell as? Cell)?.representedObject = content[indexPath.item]
         return cell
     }
