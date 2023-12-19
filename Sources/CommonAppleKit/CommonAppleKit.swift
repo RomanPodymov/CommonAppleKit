@@ -31,6 +31,7 @@
     public typealias CAWindow = UIWindow
     public typealias CARect = CGRect
     public typealias CALayoutGuide = UILayoutGuide
+    public typealias CADatePicker = UIDatePicker
 
     public extension CATextField {
         var stringValue: String {
@@ -123,6 +124,7 @@
     public typealias CAWindow = NSWindow
     public typealias CARect = NSRect
     public typealias CALayoutGuide = NSLayoutGuide
+    public typealias CADatePicker = NSDatePicker
 
     public extension CATextField {
         var placeholder: String {
