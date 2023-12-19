@@ -215,7 +215,7 @@
 #endif
 
 public extension CAButton {
-    func setSystemImage(_ systemName: String) {
+    func setSystemImage(_ systemName: String, tintColor: CAColor? = nil) {
         let image: CAImage?
         if #available(macOS 11.0, iOS 13.0, tvOS 13.0, *) {
             image = CAImage(systemName: systemName)
@@ -223,9 +223,28 @@ public extension CAButton {
             image = nil
         }
         if let image {
-            setImage(image)
+            setImage(tintColor.map { image.withTint(color: $0) } ?? image)
         } else {
             setTitle(systemName)
         }
+    }
+}
+
+private extension CAImage {
+    func withTint(color: CAColor) -> CAImage {
+        #if canImport(AppKit)
+        .init(size: size, flipped: false) { rect -> Bool in
+            color.set()
+            rect.fill()
+            self.draw(in: rect, from: .init(origin: .zero, size: self.size), operation: .destinationIn, fraction: 1.0)
+            return true
+        }
+        #elseif canImport(UIKit)
+        defer { UIGraphicsEndImageContext() }
+        UIGraphicsBeginImageContextWithOptions(size, false, scale)
+        color.set()
+        withRenderingMode(.alwaysTemplate).draw(in: CGRect(origin: .zero, size: size))
+        return UIGraphicsGetImageFromCurrentImageContext() ?? self
+        #endif
     }
 }
