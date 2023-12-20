@@ -7,6 +7,7 @@
 //
 
 open class CAScreen: CAViewController {
+    #if canImport(AppKit)
     override open func viewWillAppear() {
         super.viewWillAppear()
         willAppear()
@@ -16,6 +17,17 @@ open class CAScreen: CAViewController {
         super.viewDidAppear()
         didAppear()
     }
+    #elseif canImport(UIKit)
+    override open func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        willAppear()
+    }
+
+    open override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        didAppear()
+    }
+    #endif
 
     open func willAppear() {
 
