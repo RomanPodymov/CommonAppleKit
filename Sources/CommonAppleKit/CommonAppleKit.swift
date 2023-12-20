@@ -31,7 +31,9 @@
     public typealias CAWindow = UIWindow
     public typealias CARect = CGRect
     public typealias CALayoutGuide = UILayoutGuide
+    #if !os(tvOS)
     public typealias CADatePicker = UIDatePicker
+    #endif
 
     public extension CATextField {
         var stringValue: String {
@@ -53,6 +55,16 @@
             
             set {
                 text = newValue
+            }
+        }
+
+        var alignment: NSTextAlignment {
+            get {
+                textAlignment
+            }
+
+            set {
+                textAlignment = newValue
             }
         }
     }

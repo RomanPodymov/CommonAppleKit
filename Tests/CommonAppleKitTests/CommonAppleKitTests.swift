@@ -29,7 +29,10 @@ private final class ViewA: CAView {
     override init(frame: CARect) {
         super.init(frame: frame)
 
-        addSubview(CALabel())
+        let label = CALabel()
+        label.stringValue = "Hello"
+        label.alignment = .center
+        addSubview(label)
         addSubview(CATextField())
         addSubview(CASecureTextField())
         #if canImport(AppKit)
@@ -78,7 +81,14 @@ final class CommonAppleKitTests: XCTestCase {
     func testView() {
         let view = ViewA(frame: .zero)
 
-        XCTAssertTrue(view.subviews.contains { $0 is CALabel })
+        XCTAssertTrue(view.subviews.contains {
+            if let label = $0 as? CALabel,
+                label.stringValue == "Hello",
+                label.alignment == .center {
+                return true
+            }
+            return false
+        })
         XCTAssertTrue(view.subviews.contains { $0 is CATextField })
         XCTAssertTrue(view.subviews.contains { $0 is CASecureTextField })
     }
