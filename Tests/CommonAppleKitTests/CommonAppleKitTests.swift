@@ -9,9 +9,13 @@
 import XCTest
 import CommonAppleKit
 
-private final class ControllerA: CAViewController { }
+private final class ControllerA: CAScreen {
+    override func willAppear() { }
+}
 
-private final class ControllerB: CAViewController { }
+private final class ControllerB: CAScreen {
+    override func didAppear() { }
+}
 
 private final class CellA: CAListViewCell<CellARootView> {
     override func createRootView(frame: CARect) -> CellARootView {
