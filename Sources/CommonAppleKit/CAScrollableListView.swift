@@ -9,16 +9,16 @@
 import Foundation
 
 #if canImport(AppKit)
-open class CAScrollableListView<Cell: CAListViewCell<CellRootView>, CellRootView>: CAScrollView {
-    public var content: [Any] = [] {
+open class CAScrollableListView<Cell: CAListViewCell<CellRootView>, CellRootView, CellDataType: Any>: CAScrollView {
+    public var content: [CellDataType] = [] {
         didSet {
-            (documentView as? CAListView<Cell, CellRootView>)?.content = content
+            (documentView as? CAListView<Cell, CellRootView, CellDataType>)?.content = content
         }
     }
 
     public init(frame: CGRect, itemSize: CGSize, cellId: String = .init(describing: Cell.self), cellDelegate: CAListViewCellDelegate? = nil) {
         super.init(frame: frame)
-        let listView = CAListView<Cell, CellRootView>(frame: frame, itemSize: itemSize, cellId: cellId, cellDelegate: cellDelegate)
+        let listView = CAListView<Cell, CellRootView, CellDataType>(frame: frame, itemSize: itemSize, cellId: cellId, cellDelegate: cellDelegate)
         documentView = listView
     }
     
@@ -27,5 +27,5 @@ open class CAScrollableListView<Cell: CAListViewCell<CellRootView>, CellRootView
     }
 }
 #elseif canImport(UIKit)
-public typealias CAScrollableListView<Cell: CAListViewCell<CellRootView>, CellRootView> = CAListView<Cell, CellRootView>
+public typealias CAScrollableListView<Cell: CAListViewCell<CellRootView>, CellRootView, CellDataType: Any> = CAListView<Cell, CellRootView, CellDataType>
 #endif

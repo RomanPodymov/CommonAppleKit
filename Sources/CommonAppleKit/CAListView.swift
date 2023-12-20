@@ -8,15 +8,25 @@
 
 import Foundation
 
-open class CAListView<Cell: CAListViewCell<CellRootView>, CellRootView>: CACollectionView, CACollectionViewDataSource, CACollectionViewDelegate {
+open class CAListView<Cell: CAListViewCell<CellRootView>, CellRootView, CellDataType: Any>: CACollectionView, CACollectionViewDataSource, CACollectionViewDelegate {
     private let cellId: String
     private weak var cellDelegate: CAListViewCellDelegate?
 
     #if canImport(UIKit)
-    public var content: [Any] = [] {
-        didSet {
-            reloadData()
+    open var previousContent: [CellDataType] = []
+
+    open var content: [CellDataType] = [] {
+        willSet {
+            previousContent = content
         }
+
+        didSet {
+            reload()
+        }
+    }
+
+    open func reload() {
+        reloadData()
     }
     #endif
 
