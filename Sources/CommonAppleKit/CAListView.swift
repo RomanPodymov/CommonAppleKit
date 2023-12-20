@@ -8,7 +8,7 @@
 
 import Foundation
 
-open class CAListView<Cell: CAListViewCell<CellRootView>, CellRootView, CellDataType: Any>: CACollectionView, CACollectionViewDataSource, CACollectionViewDelegate {
+open class CAListView<Cell: CAListViewCell<CellRootView>, CellRootView, CellDataType>: CACollectionView, CACollectionViewDataSource, CACollectionViewDelegate {
     private let cellId: String
     private weak var cellDelegate: CAListViewCellDelegate?
 

@@ -106,13 +106,13 @@ final class CommonAppleKitTests: XCTestCase {
     }
 
     func testListView() {
-        let listView = CAListView<CellA, CellARootView>(frame: .init(x: 0, y: 0, width: 300, height: 500), itemSize: .init(width: 200, height: 100), cellId: "id", cellDelegate: self)
+        let listView = CAListView<CellA, CellARootView, String>(frame: .init(x: 0, y: 0, width: 300, height: 500), itemSize: .init(width: 200, height: 100), cellId: "id", cellDelegate: self)
         listView.content = ["one", "two"]
     }
 
     func testScrollableListView() {
-        let listView = CAScrollableListView<CellA, CellARootView>(frame: .zero, itemSize: .init(width: 200, height: 100))
-        listView.content = []
+        let listView = CAScrollableListView<CellA, CellARootView, Int>(frame: .zero, itemSize: .init(width: 200, height: 100))
+        listView.content = [1, 2]
     }
 }
 

@@ -9,7 +9,7 @@
 import Foundation
 
 #if canImport(AppKit)
-open class CAScrollableListView<Cell: CAListViewCell<CellRootView>, CellRootView, CellDataType: Any>: CAScrollView {
+open class CAScrollableListView<Cell: CAListViewCell<CellRootView>, CellRootView, CellDataType>: CAScrollView {
     public var content: [CellDataType] = [] {
         didSet {
             (documentView as? CAListView<Cell, CellRootView, CellDataType>)?.content = content
@@ -27,5 +27,5 @@ open class CAScrollableListView<Cell: CAListViewCell<CellRootView>, CellRootView
     }
 }
 #elseif canImport(UIKit)
-public typealias CAScrollableListView<Cell: CAListViewCell<CellRootView>, CellRootView, CellDataType: Any> = CAListView<Cell, CellRootView, CellDataType>
+public typealias CAScrollableListView<Cell: CAListViewCell<CellRootView>, CellRootView, CellDataType> = CAListView<Cell, CellRootView, CellDataType>
 #endif
