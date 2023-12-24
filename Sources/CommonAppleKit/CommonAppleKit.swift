@@ -34,6 +34,8 @@
     #if !os(tvOS)
     public typealias CADatePicker = UIDatePicker
     #endif
+    public typealias CATraitCollection = UITraitCollection
+    public typealias CAUserInterfaceStyle = UIUserInterfaceStyle
 
     public extension CATextField {
         var stringValue: String {
@@ -112,6 +114,16 @@
         }
     }
 #elseif canImport(AppKit)
+    public enum CAUserInterfaceStyle {
+        case dark
+        case light
+        case unspecified
+    }
+
+    public class CATraitCollection: NSObject {
+        public let userInterfaceStyle: CAUserInterfaceStyle = .light
+    }
+
     import AppKit
 
     public typealias CAView = NSView

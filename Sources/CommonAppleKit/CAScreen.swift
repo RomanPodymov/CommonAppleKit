@@ -29,11 +29,23 @@ open class CAScreen: CAViewController {
     }
     #endif
 
+    #if canImport(UIKit)
+    open override func traitCollectionDidChange(_ previousTraitCollection: CATraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+
+        didChangeTraitCollection()
+    }
+    #endif
+
     open func willAppear() {
 
     }
 
     open func didAppear() {
+
+    }
+
+    open func didChangeTraitCollection() {
 
     }
 }
