@@ -9,7 +9,7 @@
 import Foundation
 
 open class CATextLabel: CALabel {
-    public override init(frame frameRect: NSRect) {
+    public override init(frame frameRect: CARect) {
         super.init(frame: frameRect)
 
         #if canImport(UIKit)
