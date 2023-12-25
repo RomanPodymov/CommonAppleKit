@@ -237,6 +237,10 @@
         func present(_ viewControllerToPresent: CAViewController) {
             presentAsModalWindow(viewControllerToPresent)
         }
+
+        var traitCollection: CATraitCollection {
+            .init()
+        }
     }
 #endif
 

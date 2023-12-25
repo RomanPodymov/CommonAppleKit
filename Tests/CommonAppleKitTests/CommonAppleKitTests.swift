@@ -11,6 +11,8 @@ import CommonAppleKit
 
 private final class ControllerA: CAScreen {
     override func willAppear() { }
+
+    override func didChangeTraitCollection() { }
 }
 
 private final class ControllerB: CAScreen {
