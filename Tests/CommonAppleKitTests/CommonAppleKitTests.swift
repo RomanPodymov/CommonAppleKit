@@ -35,7 +35,7 @@ private final class ViewA: CAView {
     override init(frame: CARect) {
         super.init(frame: frame)
 
-        let label = CALabel()
+        let label = CATextLabel()
         label.stringValue = "Hello"
         label.alignment = .center
         addSubview(label)
@@ -88,7 +88,7 @@ final class CommonAppleKitTests: XCTestCase {
         let view = ViewA(frame: .zero)
 
         XCTAssertTrue(view.subviews.contains {
-            if let label = $0 as? CALabel,
+            if let label = $0 as? CATextLabel,
                 label.stringValue == "Hello",
                 label.alignment == .center {
                 return true
