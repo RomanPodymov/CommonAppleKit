@@ -27,5 +27,9 @@ open class CAScrollableListView<Cell: CAListViewCell<CellRootView>, CellRootView
     }
 }
 #elseif canImport(UIKit)
-public typealias CAScrollableListView<Cell: CAListViewCell<CellRootView>, CellRootView, CellDataType> = CAListView<Cell, CellRootView, CellDataType>
+open class CAScrollableListView<Cell: CAListViewCell<CellRootView>, CellRootView, CellDataType>: CAListView<Cell, CellRootView, CellDataType> {
+    open var documentView: CAView? {
+        self
+    }
+}
 #endif
