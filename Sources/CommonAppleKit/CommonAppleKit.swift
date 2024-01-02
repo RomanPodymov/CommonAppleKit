@@ -160,6 +160,16 @@
                 placeholderString ?? ""
             }
         }
+
+        var attributedPlaceholder: NSAttributedString {
+            set {
+                placeholderAttributedString = newValue
+            }
+
+            get {
+                placeholderAttributedString ?? .init(string: "")
+            }
+        }
     }
 
     public extension CAImage {
