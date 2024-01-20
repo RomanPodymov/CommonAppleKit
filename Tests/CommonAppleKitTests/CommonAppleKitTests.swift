@@ -36,6 +36,7 @@ private final class ViewA: CAView {
         super.init(frame: frame)
 
         let label = CATextLabel()
+        label.font = CAFont.systemFont(ofSize: 20)
         label.stringValue = "Hello"
         label.alignment = .center
         addSubview(label)
