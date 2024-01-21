@@ -65,6 +65,7 @@ final class CommonAppleKitTests: XCTestCase {
 
     func testButton() {
         let button = CAButton()
+        button.contentEdgeInsets = CAEdgeInsets(top: 10, left: 20, bottom: 30, right: 40)
         let selector = #selector(Self.onButtonTap)
         button.addTargetForPrimaryActionTriggered(self, action: selector)
         let actions = button.actions(for: self)

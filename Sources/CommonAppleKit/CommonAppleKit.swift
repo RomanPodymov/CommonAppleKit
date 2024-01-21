@@ -37,6 +37,7 @@
     public typealias CATraitCollection = UITraitCollection
     public typealias CAUserInterfaceStyle = UIUserInterfaceStyle
     public typealias CAFont = UIFont
+    public typealias CAEdgeInsets = UIEdgeInsets
 
     public extension CATextField {
         var stringValue: String {
@@ -151,6 +152,7 @@
     public typealias CALayoutGuide = NSLayoutGuide
     public typealias CADatePicker = NSDatePicker
     public typealias CAFont = NSFont
+    public typealias CAEdgeInsets = NSEdgeInsets
 
     public extension CATextField {
         var placeholder: String {
