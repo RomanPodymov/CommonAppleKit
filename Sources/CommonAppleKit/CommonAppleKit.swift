@@ -223,7 +223,7 @@
 #endif
 
 public extension CAButton {
-    func setSystemImage(_ systemName: String, tintColor: CAColor? = nil) {
+    func setSystemImage(_ systemName: String, tintColor: CAColor? = nil, newSize: CGSize? = nil) {
         let image: CAImage?
         if #available(macOS 11.0, iOS 13.0, tvOS 13.0, *) {
             image = CAImage(systemName: systemName)
@@ -231,7 +231,7 @@ public extension CAButton {
             image = nil
         }
         if let image {
-            setImage(tintColor.map { image.withTint(color: $0) } ?? image)
+            setImage(tintColor.map { image.withTint(color: $0, newSize: newSize) } ?? image)
         } else {
             setTitle(systemName)
         }
@@ -239,7 +239,7 @@ public extension CAButton {
 }
 
 private extension CAImage {
-    func withTint(color: CAColor) -> CAImage {
+    func withTint(color: CAColor, newSize: CGSize? = nil) -> CAImage {
         #if canImport(AppKit)
         .init(size: size, flipped: false) { rect -> Bool in
             color.set()
@@ -249,9 +249,10 @@ private extension CAImage {
         }
         #elseif canImport(UIKit)
         defer { UIGraphicsEndImageContext() }
-        UIGraphicsBeginImageContextWithOptions(size, false, scale)
+        let sizeToUse = newSize ?? size
+        UIGraphicsBeginImageContextWithOptions(sizeToUse, false, scale)
         color.set()
-        withRenderingMode(.alwaysTemplate).draw(in: CGRect(origin: .zero, size: size))
+        withRenderingMode(.alwaysTemplate).draw(in: CGRect(origin: .zero, size: sizeToUse))
         return UIGraphicsGetImageFromCurrentImageContext() ?? self
         #endif
     }
