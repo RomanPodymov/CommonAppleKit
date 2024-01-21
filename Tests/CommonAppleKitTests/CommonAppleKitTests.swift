@@ -65,7 +65,9 @@ final class CommonAppleKitTests: XCTestCase {
 
     func testButton() {
         let button = CAButton()
+        #if canImport(UIKit)
         button.contentEdgeInsets = CAEdgeInsets(top: 10, left: 20, bottom: 30, right: 40)
+        #endif
         let selector = #selector(Self.onButtonTap)
         button.addTargetForPrimaryActionTriggered(self, action: selector)
         let actions = button.actions(for: self)
@@ -74,6 +76,13 @@ final class CommonAppleKitTests: XCTestCase {
 
     @objc private func onButtonTap() {
 
+    }
+
+    func testStackView() {
+        let stackView = CAStackView()
+        let edgeInsets = CAEdgeInsets(top: 10, left: 20, bottom: 30, right: 40)
+        stackView.edgeInsets = edgeInsets
+        XCTAssertEqual(stackView.edgeInsets, edgeInsets)
     }
 
     func testTabBarController() {

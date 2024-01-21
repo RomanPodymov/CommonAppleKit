@@ -38,6 +38,7 @@
     public typealias CAUserInterfaceStyle = UIUserInterfaceStyle
     public typealias CAFont = UIFont
     public typealias CAEdgeInsets = UIEdgeInsets
+    public typealias CAStackView = UIStackView
 
     public extension CATextField {
         var stringValue: String {
@@ -153,6 +154,7 @@
     public typealias CADatePicker = NSDatePicker
     public typealias CAFont = NSFont
     public typealias CAEdgeInsets = NSEdgeInsets
+    public typealias CAStackView = NSStackView
 
     public extension CATextField {
         var placeholder: String {
@@ -290,5 +292,11 @@ private extension CAImage {
         withRenderingMode(.alwaysTemplate).draw(in: CGRect(origin: .zero, size: size))
         return UIGraphicsGetImageFromCurrentImageContext() ?? self
         #endif
+    }
+}
+
+extension CAEdgeInsets: Equatable {
+    public static func == (lhs: NSEdgeInsets, rhs: NSEdgeInsets) -> Bool {
+        lhs.bottom == rhs.bottom && lhs.left == rhs.left && lhs.top == rhs.top && lhs.right == rhs.right
     }
 }
