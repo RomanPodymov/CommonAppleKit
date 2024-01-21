@@ -17,19 +17,41 @@ public typealias CATextFieldBaseClass = NSTextField
 #endif
 
 public class CATextField: CATextFieldBaseClass {
-    let inset: CGFloat = 10
+    let inset: CGFloat?
 
+    public init(frame: CGRect = .zero, inset: CGFloat? = nil) {
+        self.inset = inset
+        super.init(frame: frame)
+    }
+    
+    required init?(coder: NSCoder) {
+        self.inset = nil
+        super.init(coder: coder)
+    }
+    
     #if canImport(UIKit)
     public override func textRect(forBounds bounds: CGRect) -> CGRect {
-        return CGRectInset(bounds, inset, inset)
+        if let inset {
+            return CGRectInset(bounds, inset, inset)
+        } else {
+            return super.textRect(forBounds: bounds)
+        }
     }
 
     public override func editingRect(forBounds bounds: CGRect) -> CGRect {
-        return CGRectInset(bounds, inset, inset)
+        if let inset {
+            return CGRectInset(bounds, inset, inset)
+        } else {
+            return super.editingRect(forBounds: bounds)
+        }
     }
 
     public override func placeholderRect(forBounds bounds: CGRect) -> CGRect {
-        return CGRectInset(bounds, inset, inset) 
+        if let inset {
+            return CGRectInset(bounds, inset, inset)
+        } else {
+            return super.placeholderRect(forBounds: bounds)
+        }
     }
     #endif
 }
@@ -49,7 +71,15 @@ public class CATextField: CATextFieldBaseClass {
         }
     }
 #elseif canImport(AppKit)
-    public typealias CASecureTextField = NSSecureTextField
+    public class CASecureTextField: NSSecureTextField {
+        public init(frame: CGRect = .zero, inset: CGFloat? = nil) {
+            super.init(frame: frame)
+        }
+        
+        public required init?(coder: NSCoder) {
+            super.init(coder: coder)
+        }
+    }
 
     public extension CATextFieldBaseClass {
         var placeholder: String {
