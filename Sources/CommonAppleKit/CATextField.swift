@@ -37,7 +37,7 @@ public class CATextField: CATextFieldBaseClass {
 #if canImport(UIKit)
     public typealias CASecureTextField = CATextField
 
-    public extension CATextField {
+    public extension CATextFieldBaseClass {
         var stringValue: String {
             get {
                 text ?? ""
@@ -49,9 +49,9 @@ public class CATextField: CATextFieldBaseClass {
         }
     }
 #elseif canImport(AppKit)
-    public class CASecureTextField: NSSecureTextField { }
+    public typealias CASecureTextField = NSSecureTextField
 
-    public extension CATextField {
+    public extension CATextFieldBaseClass {
         var placeholder: String {
             set {
                 placeholderString = newValue
