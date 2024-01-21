@@ -241,15 +241,20 @@ public extension CAButton {
 private extension CAImage {
     func withTint(color: CAColor, newSize: CGSize? = nil) -> CAImage {
         #if canImport(AppKit)
-        .init(size: size, flipped: false) { rect -> Bool in
+        .init(size: newSize ?? size, flipped: false) { rect -> Bool in
             color.set()
             rect.fill()
-            self.draw(in: rect, from: .init(origin: .zero, size: self.size), operation: .destinationIn, fraction: 1.0)
+            self.draw(
+                in: .init(origin: rect.origin, size: newSize ?? rect.size),
+                from: .init(origin: .zero, size: self.size),
+                operation: .destinationIn,
+                fraction: 1.0
+            )
             return true
         }
         #elseif canImport(UIKit)
-        defer { UIGraphicsEndImageContext() }
         let sizeToUse = newSize ?? size
+        defer { UIGraphicsEndImageContext() }
         UIGraphicsBeginImageContextWithOptions(sizeToUse, false, scale)
         color.set()
         withRenderingMode(.alwaysTemplate).draw(in: CGRect(origin: .zero, size: sizeToUse))
