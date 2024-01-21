@@ -296,7 +296,7 @@ private extension CAImage {
 }
 
 extension CAEdgeInsets: Equatable {
-    public static func == (lhs: NSEdgeInsets, rhs: NSEdgeInsets) -> Bool {
+    public static func == (lhs: CAEdgeInsets, rhs: CAEdgeInsets) -> Bool {
         lhs.bottom == rhs.bottom && lhs.left == rhs.left && lhs.top == rhs.top && lhs.right == rhs.right
     }
 }
