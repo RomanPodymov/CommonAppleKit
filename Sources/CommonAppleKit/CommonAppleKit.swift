@@ -15,8 +15,6 @@
     public typealias CAAppDelegateBaseClass = UIResponder
     public typealias CATabBarController = UITabBarController
     public typealias CAButton = UIButton
-    public typealias CATextField = UITextField
-    public typealias CASecureTextField = UITextField
     public typealias CAImage = UIImage
     public typealias CAScrollView = UIScrollView
     public typealias CACollectionView = UICollectionView
@@ -39,18 +37,6 @@
     public typealias CAFont = UIFont
     public typealias CAEdgeInsets = UIEdgeInsets
     public typealias CAStackView = UIStackView
-
-    public extension CATextField {
-        var stringValue: String {
-            get {
-                text ?? ""
-            }
-
-            set {
-                text = newValue
-            }
-        }
-    }
 
     public extension CALabel {
         var stringValue: String {
@@ -135,8 +121,6 @@
     public typealias CAAppDelegateBaseClass = NSObject
     public typealias CATabBarController = NSTabViewController
     public typealias CAButton = NSButton
-    public typealias CATextField = NSTextField
-    public typealias CASecureTextField = NSSecureTextField
     public typealias CAImage = NSImage
     public typealias CAScrollView = NSScrollView
     public typealias CACollectionView = NSCollectionView
@@ -155,28 +139,6 @@
     public typealias CAFont = NSFont
     public typealias CAEdgeInsets = NSEdgeInsets
     public typealias CAStackView = NSStackView
-
-    public extension CATextField {
-        var placeholder: String {
-            set {
-                placeholderString = newValue
-            }
-
-            get {
-                placeholderString ?? ""
-            }
-        }
-
-        var attributedPlaceholder: NSAttributedString {
-            set {
-                placeholderAttributedString = newValue
-            }
-
-            get {
-                placeholderAttributedString ?? .init(string: "")
-            }
-        }
-    }
 
     public extension CAImage {
         @available(macOS 11.0, *)
