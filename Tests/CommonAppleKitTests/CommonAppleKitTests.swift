@@ -78,12 +78,14 @@ final class CommonAppleKitTests: XCTestCase {
 
     }
 
+    #if canImport(AppKit)
     func testStackView() {
         let stackView = CAStackView()
         let edgeInsets = CAEdgeInsets(top: 10, left: 20, bottom: 30, right: 40)
         stackView.edgeInsets = edgeInsets
         XCTAssertEqual(stackView.edgeInsets, edgeInsets)
     }
+    #endif
 
     func testTabBarController() {
         let tabBarController = CATabBarController()
