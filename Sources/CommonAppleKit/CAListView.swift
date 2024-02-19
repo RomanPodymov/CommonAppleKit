@@ -30,11 +30,20 @@ open class CAListView<Cell: CAListViewCell<CellRootView>, CellRootView, CellData
     }
     #endif
 
-    public init(frame: CGRect, itemSize: CGSize, cellId: String = .init(describing: Cell.self), cellDelegate: CAListViewCellDelegate? = nil) {
+    public init(
+        frame: CGRect,
+        itemSize: CGSize,
+        minimumInteritemSpacing: CGFloat = 0,
+        minimumLineSpacing: CGFloat = 0,
+        cellId: String = .init(describing: Cell.self),
+        cellDelegate: CAListViewCellDelegate? = nil
+    ) {
         self.cellId = cellId
         self.cellDelegate = cellDelegate
         let layout = CACollectionViewFlowLayout()
         layout.itemSize = itemSize
+        layout.minimumInteritemSpacing = minimumInteritemSpacing
+        layout.minimumLineSpacing = minimumLineSpacing
         #if canImport(AppKit)
         super.init(frame: frame)
         collectionViewLayout = layout
@@ -72,7 +81,7 @@ open class CAListView<Cell: CAListViewCell<CellRootView>, CellRootView, CellData
     }
     #elseif canImport(UIKit)
     public func collectionView(_ collectionView: CACollectionView, didSelectItemAt indexPath: IndexPath) {
-
+        cellDelegate?.onCellTap(data: content[indexPath.item])
     }
 
     public func collectionView(_ collectionView: CACollectionView, cellForItemAt indexPath: IndexPath) -> CACollectionViewCell {

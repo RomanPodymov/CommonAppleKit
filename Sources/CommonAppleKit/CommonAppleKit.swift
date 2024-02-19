@@ -37,6 +37,7 @@
     public typealias CAFont = UIFont
     public typealias CAEdgeInsets = UIEdgeInsets
     public typealias CAStackView = UIStackView
+    public typealias CAImageView = UIImageView
 
     public extension CALabel {
         var stringValue: String {
@@ -139,6 +140,7 @@
     public typealias CAFont = NSFont
     public typealias CAEdgeInsets = NSEdgeInsets
     public typealias CAStackView = NSStackView
+    public typealias CAImageView = NSImageView
 
     public extension CAImage {
         @available(macOS 11.0, *)
