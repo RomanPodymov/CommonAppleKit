@@ -132,6 +132,10 @@ final class CommonAppleKitTests: XCTestCase {
 }
 
 extension CommonAppleKitTests: CAListViewCellDelegate {
+    func onCellTap(data: Any?) {
+
+    }
+    
     func onAction(data: Any?) {
 
     }
