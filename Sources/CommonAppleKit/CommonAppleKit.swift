@@ -11,6 +11,7 @@
 
     public typealias CAView = UIView
     public typealias CAViewController = UIViewController
+    public typealias CAApplication = UIApplication
     public typealias CAApplicationDelegate = UIApplicationDelegate
     public typealias CAAppDelegateBaseClass = UIResponder
     public typealias CATabBarController = UITabBarController
@@ -118,6 +119,7 @@
 
     public typealias CAView = NSView
     public typealias CAViewController = NSViewController
+    public typealias CAApplication = NSApplication
     public typealias CAApplicationDelegate = NSApplicationDelegate
     public typealias CAAppDelegateBaseClass = NSObject
     public typealias CATabBarController = NSTabViewController
