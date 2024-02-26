@@ -9,6 +9,14 @@
 #if canImport(UIKit)
     import UIKit
 
+    public func CAApplicationMain(
+        _ argc: Int32,
+        _ argv: UnsafeMutablePointer<UnsafeMutablePointer<CChar>?>,
+        _ principalClassName: String?,
+        _ delegateClassName: String?
+    ) -> Int32 {
+        UIApplicationMain(argc, argv, principalClassName, delegateClassName)
+    }
     public typealias CAView = UIView
     public typealias CAViewController = UIViewController
     public typealias CAApplication = UIApplication
@@ -117,6 +125,12 @@
 
     import AppKit
 
+    public func CAApplicationMain(
+        _ argc: Int32,
+        _ argv: UnsafeMutablePointer<UnsafeMutablePointer<CChar>?>
+    ) -> Int32 {
+        NSApplicationMain(argc, argv)
+    }
     public typealias CAView = NSView
     public typealias CAViewController = NSViewController
     public typealias CAApplication = NSApplication
