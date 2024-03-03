@@ -79,6 +79,16 @@ public class CATextField: CATextFieldBaseClass {
         public required init?(coder: NSCoder) {
             super.init(coder: coder)
         }
+
+        public var isSecureTextEntry: Bool {
+            get {
+                true
+            }
+
+            set {
+
+            }
+        }
     }
 
     public extension CATextFieldBaseClass {

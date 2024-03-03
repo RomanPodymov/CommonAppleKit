@@ -41,7 +41,9 @@ private final class ViewA: CAView {
         label.alignment = .center
         addSubview(label)
         addSubview(CATextField())
-        addSubview(CASecureTextField())
+        let secureTextField = CASecureTextField()
+        secureTextField.isSecureTextEntry = true
+        addSubview(secureTextField)
         #if canImport(AppKit)
         layer?.backgroundColor = CAColor.red.cgColor
         #elseif canImport(UIKit)
@@ -109,7 +111,12 @@ final class CommonAppleKitTests: XCTestCase {
             return false
         })
         XCTAssertTrue(view.subviews.contains { $0 is CATextField })
-        XCTAssertTrue(view.subviews.contains { $0 is CASecureTextField })
+        XCTAssertTrue(view.subviews.contains {
+            guard let secureTextField = $0 as? CASecureTextField else {
+                return false
+            }
+            return secureTextField.isSecureTextEntry
+        })
     }
 
     func testCollectionView() {
