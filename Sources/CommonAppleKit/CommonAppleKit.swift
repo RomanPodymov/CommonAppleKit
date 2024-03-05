@@ -238,6 +238,12 @@
             .init()
         }
     }
+
+    public extension CAView {
+        var traitCollection: CATraitCollection {
+            .init()
+        }
+    }
 #endif
 
 public extension CAButton {
