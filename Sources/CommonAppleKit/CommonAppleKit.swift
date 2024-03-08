@@ -47,6 +47,7 @@
     public typealias CAEdgeInsets = UIEdgeInsets
     public typealias CAStackView = UIStackView
     public typealias CAImageView = UIImageView
+    public typealias CAEvent = UIEvent
 
     public extension CALabel {
         var stringValue: String {
@@ -157,6 +158,7 @@
     public typealias CAEdgeInsets = NSEdgeInsets
     public typealias CAStackView = NSStackView
     public typealias CAImageView = NSImageView
+    public typealias CAEvent = NSEvent
 
     public extension CAImage {
         @available(macOS 11.0, *)

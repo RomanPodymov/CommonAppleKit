@@ -15,7 +15,17 @@ open class CAScreenItem: CAView {
     }
     #endif
 
+    #if canImport(AppKit)
+    open override func mouseDown(with _: CAEvent) {
+        didTap()
+    }
+    #endif
+
     open func didChangeTraitCollection() {
+
+    }
+
+    open func didTap() {
 
     }
 }

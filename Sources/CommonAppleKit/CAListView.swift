@@ -69,7 +69,7 @@ open class CAListView<Cell: CAListViewCell<CellRootView>, CellRootView, CellData
 
     #if canImport(AppKit)
     public func collectionView(_ collectionView: CACollectionView, itemForRepresentedObjectAt indexPath: IndexPath) -> CACollectionViewCell {
-        fatalError()
+        collectionView.makeItem(withIdentifier: .init(cellId), for: indexPath)
     }
 
     public func collectionView(_ collectionView: CACollectionView, willDisplay cell: CACollectionViewCell, forRepresentedObjectAt indexPath: IndexPath) {
