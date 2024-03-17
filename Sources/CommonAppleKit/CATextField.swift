@@ -53,6 +53,16 @@ public class CATextField: CATextFieldBaseClass {
             return super.placeholderRect(forBounds: bounds)
         }
     }
+    #elseif canImport(AppKit)
+    public var keyboardType: CAKeyboardType {
+        get {
+            .emailAddress
+        }
+
+        set {
+        
+        }
+    }
     #endif
 }
 

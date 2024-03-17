@@ -114,6 +114,10 @@
         }
     }
 #elseif canImport(AppKit)
+    public enum CAKeyboardType {
+        case emailAddress
+    }
+
     public enum CAUserInterfaceStyle {
         case dark
         case light
@@ -201,6 +205,12 @@
                 tabViewItems = newValue?.map {
                     .init(viewController: $0)
                 } ?? []
+            }
+        }
+
+        var selectedViewController: CAViewController? {
+            get {
+                viewControllers?[selectedTabViewItemIndex]
             }
         }
     }
