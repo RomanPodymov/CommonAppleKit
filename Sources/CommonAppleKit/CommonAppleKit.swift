@@ -48,6 +48,7 @@
     public typealias CAStackView = UIStackView
     public typealias CAImageView = UIImageView
     public typealias CAEvent = UIEvent
+    public typealias CASwitch = UISwitch
 
     public extension CALabel {
         var stringValue: String {
@@ -163,6 +164,7 @@
     public typealias CAStackView = NSStackView
     public typealias CAImageView = NSImageView
     public typealias CAEvent = NSEvent
+    public typealias CASwitch = NSSwitch
 
     public extension CAImage {
         @available(macOS 11.0, *)
