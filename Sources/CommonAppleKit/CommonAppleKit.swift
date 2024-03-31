@@ -48,7 +48,10 @@
     public typealias CAStackView = UIStackView
     public typealias CAImageView = UIImageView
     public typealias CAEvent = UIEvent
+    #if !os(tvOS)
     public typealias CASwitch = UISwitch
+    #endif
+    public typealias CAControl = UIControl
 
     public extension CALabel {
         var stringValue: String {
@@ -165,6 +168,7 @@
     public typealias CAImageView = NSImageView
     public typealias CAEvent = NSEvent
     public typealias CASwitch = NSSwitch
+    public typealias CAControl = NSControl
 
     public extension CAImage {
         @available(macOS 11.0, *)
@@ -173,16 +177,16 @@
         }
     }
 
-    public extension CAButton {
-        func setTitle(_ title: String) {
-            self.title = title
-        }
-
-        func setImage(_ image: CAImage) {
-            self.image = image
-        }
-
+    public extension CAControl {
         func addTargetForPrimaryActionTriggered(
+            _ target: AnyObject,
+            action: Selector
+        ) {
+            self.target = target
+            self.action = action
+        }
+
+        func addTargetForValueChanged(
             _ target: AnyObject,
             action: Selector
         ) {
@@ -194,6 +198,16 @@
             [action].compactMap {
                 $0?.description
             }
+        }
+    }
+
+    public extension CAButton {
+        func setTitle(_ title: String) {
+            self.title = title
+        }
+
+        func setImage(_ image: CAImage) {
+            self.image = image
         }
     }
 
