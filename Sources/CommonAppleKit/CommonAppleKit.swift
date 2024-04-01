@@ -69,7 +69,12 @@
         }
 
         func actions(for target: Any) -> [String] {
-            actions(forTarget: target, forControlEvent: .primaryActionTriggered) ?? []
+            [
+                actions(forTarget: target, forControlEvent: .primaryActionTriggered),
+                actions(forTarget: target, forControlEvent: .valueChanged)
+            ].flatMap {
+                $0 ?? []
+            }
         }
     }
 
