@@ -53,6 +53,26 @@
     #endif
     public typealias CAControl = UIControl
 
+    public extension CAControl {
+        func addTargetForPrimaryActionTriggered(
+            _ target: AnyObject,
+            action: Selector
+        ) {
+            addTarget(target, action: action, for: .primaryActionTriggered)
+        }
+
+        func addTargetForValueChanged(
+            _ target: AnyObject,
+            action: Selector
+        ) {
+            addTarget(target, action: action, for: .valueChanged)
+        }
+
+        func actions(for target: Any) -> [String] {
+            actions(forTarget: target, forControlEvent: .primaryActionTriggered) ?? []
+        }
+    }
+
     public extension CALabel {
         var stringValue: String {
             get {
@@ -90,17 +110,6 @@
             Self.states.forEach { state in
                 setImage(image, for: state)
             }
-        }
-
-        func addTargetForPrimaryActionTriggered(
-            _ target: AnyObject,
-            action: Selector
-        ) {
-            addTarget(target, action: action, for: .primaryActionTriggered)
-        }
-
-        func actions(for target: Any) -> [String] {
-            actions(forTarget: target, forControlEvent: .primaryActionTriggered) ?? []
         }
     }
 
@@ -198,6 +207,12 @@
             [action].compactMap {
                 $0?.description
             }
+        }
+    }
+
+    public extension CASwitch {
+        var isOn: Bool {
+            state == .on
         }
     }
 
