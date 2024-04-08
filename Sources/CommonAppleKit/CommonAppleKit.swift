@@ -217,7 +217,17 @@
 
     public extension CASwitch {
         var isOn: Bool {
-            state == .on
+            get {
+                state == .on
+            }
+
+            set {
+                if newValue {
+                    state = .on
+                } else {
+                    state = .off
+                }
+            }
         }
     }
 
