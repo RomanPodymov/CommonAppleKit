@@ -7,9 +7,16 @@
 //
 
 import Foundation
+import CoreGraphics
 
-open class CAListView<Cell: CAListViewCell<CellRootView>, CellRootView, CellDataType>: CACollectionView, CACollectionViewDataSource, CACollectionViewDelegate {
+open class CAListView<
+    Cell: CAListViewCell<CellRootView>,
+    Footer: CACollectionReusableView,
+    CellRootView,
+    CellDataType
+>: CACollectionView, CACollectionViewDataSource, CACollectionViewDelegate {
     private let cellId: String
+    private let footerId: String
     private weak var cellDelegate: CAListViewCellDelegate?
 
     #if canImport(UIKit)
@@ -35,15 +42,19 @@ open class CAListView<Cell: CAListViewCell<CellRootView>, CellRootView, CellData
         itemSize: CGSize,
         minimumInteritemSpacing: CGFloat = 0,
         minimumLineSpacing: CGFloat = 0,
+        footerReferenceSize: CGSize = .zero,
         cellId: String = .init(describing: Cell.self),
-        cellDelegate: CAListViewCellDelegate? = nil
+        cellDelegate: CAListViewCellDelegate? = nil,
+        footerId: String = .init(describing: Footer.self)
     ) {
         self.cellId = cellId
+        self.footerId = footerId
         self.cellDelegate = cellDelegate
         let layout = CACollectionViewFlowLayout()
         layout.itemSize = itemSize
         layout.minimumInteritemSpacing = minimumInteritemSpacing
         layout.minimumLineSpacing = minimumLineSpacing
+        layout.footerReferenceSize = footerReferenceSize
         #if canImport(AppKit)
         super.init(frame: frame)
         collectionViewLayout = layout
@@ -52,6 +63,11 @@ open class CAListView<Cell: CAListViewCell<CellRootView>, CellRootView, CellData
         #endif
 
         register(Cell.self, forCellWithReuseIdentifier: cellId)
+        register(
+            Footer.self,
+            forSupplementaryViewOfKind: CACollectionView.elementKindSectionFooter,
+            withReuseIdentifier: footerId
+        )
 
         delegate = self
         #if canImport(UIKit)
@@ -65,6 +81,18 @@ open class CAListView<Cell: CAListViewCell<CellRootView>, CellRootView, CellData
 
     public func collectionView(_ collectionView: CACollectionView, numberOfItemsInSection section: Int) -> Int {
         content.count
+    }
+
+    public func collectionView(_ collectionView: CACollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> CACollectionReusableView {
+        if kind == CACollectionView.elementKindSectionFooter {
+            let view = collectionView.dequeueReusableSupplementaryView(
+                ofKind: CACollectionView.elementKindSectionFooter,
+                withReuseIdentifier: footerId,
+                for: indexPath
+            )
+            return view
+        }
+        return .init()
     }
 
     #if canImport(AppKit)

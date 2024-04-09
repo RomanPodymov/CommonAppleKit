@@ -7,18 +7,42 @@
 //
 
 import Foundation
+import CoreGraphics
 
 #if canImport(AppKit)
-open class CAScrollableListView<Cell: CAListViewCell<CellRootView>, CellRootView, CellDataType>: CAScrollView {
+open class CAScrollableListView<
+    Cell: CAListViewCell<CellRootView>,
+    Footer: CACollectionReusableView,
+    CellRootView,
+    CellDataType
+>: CAScrollView {
     public var content: [CellDataType] = [] {
         didSet {
-            (documentView as? CAListView<Cell, CellRootView, CellDataType>)?.content = content
+            (documentView as? CAListView<Cell, Footer, CellRootView, CellDataType>)?.content = content
         }
     }
 
-    public init(frame: CGRect, itemSize: CGSize, cellId: String = .init(describing: Cell.self), cellDelegate: CAListViewCellDelegate? = nil) {
+    public init(
+        frame: CGRect,
+        itemSize: CGSize,
+        minimumInteritemSpacing: CGFloat = 0,
+        minimumLineSpacing: CGFloat = 0,
+        footerReferenceSize: CGSize = .zero,
+        cellId: String = .init(describing: Cell.self),
+        cellDelegate: CAListViewCellDelegate? = nil,
+        footerId: String = .init(describing: Footer.self)
+    ) {
         super.init(frame: frame)
-        let listView = CAListView<Cell, CellRootView, CellDataType>(frame: frame, itemSize: itemSize, cellId: cellId, cellDelegate: cellDelegate)
+        let listView = CAListView<Cell, Footer, CellRootView, CellDataType>(
+            frame: frame,
+            itemSize: itemSize,
+            minimumInteritemSpacing: minimumInteritemSpacing,
+            minimumLineSpacing: minimumLineSpacing,
+            footerReferenceSize: footerReferenceSize,
+            cellId: cellId,
+            cellDelegate: cellDelegate,
+            footerId: footerId
+        )
         documentView = listView
     }
     
@@ -27,7 +51,12 @@ open class CAScrollableListView<Cell: CAListViewCell<CellRootView>, CellRootView
     }
 }
 #elseif canImport(UIKit)
-open class CAScrollableListView<Cell: CAListViewCell<CellRootView>, CellRootView, CellDataType>: CAListView<Cell, CellRootView, CellDataType> {
+open class CAScrollableListView<
+    Cell: CAListViewCell<CellRootView>,
+    Footer: CACollectionReusableView,
+    CellRootView,
+    CellDataType
+>: CAListView<Cell, Footer, CellRootView, CellDataType> {
     open var documentView: CAView? {
         self
     }

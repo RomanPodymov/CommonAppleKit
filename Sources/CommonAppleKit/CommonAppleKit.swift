@@ -28,6 +28,7 @@
     public typealias CAScrollView = UIScrollView
     public typealias CACollectionView = UICollectionView
     public typealias CACollectionViewCell = UICollectionViewCell
+    public typealias CACollectionReusableView = UICollectionReusableView
     public typealias CALabel = UILabel
     public typealias CACollectionViewDataSource = UICollectionViewDataSource
     public typealias CACollectionViewDelegate = UICollectionViewDelegate
@@ -165,6 +166,7 @@
     public typealias CAScrollView = NSScrollView
     public typealias CACollectionView = NSCollectionView
     public typealias CACollectionViewCell = NSCollectionViewItem
+    public typealias CACollectionReusableView = NSView
     public typealias CALabel = NSTextField
     public typealias CACollectionViewDataSource = NSCollectionViewDataSource
     public typealias CACollectionViewDelegate = NSCollectionViewDelegate
@@ -272,6 +274,26 @@
             forCellWithReuseIdentifier identifier: String
         ) {
             register(cellClass, forItemWithIdentifier: .init(identifier))
+        }
+
+        func register(
+            _ viewClass: AnyClass?,
+            forSupplementaryViewOfKind elementKind: String,
+            withReuseIdentifier identifier: String
+        ) {
+            register(
+                viewClass,
+                forSupplementaryViewOfKind: elementKind,
+                withIdentifier: .init(identifier)
+            )
+        }
+
+        func dequeueReusableSupplementaryView(
+            ofKind elementKind: String,
+            withReuseIdentifier identifier: String,
+            for indexPath: IndexPath
+        ) -> CACollectionReusableView {
+            makeSupplementaryView(ofKind: elementKind, withIdentifier: .init(identifier), for: indexPath)
         }
     }
 
