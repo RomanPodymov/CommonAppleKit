@@ -95,6 +95,10 @@ open class CAListView<
         return .init()
     }
 
+    public func collectionView(_ collectionView: CACollectionView, willDisplaySupplementaryView view: CACollectionReusableView, forElementKind elementKind: String, at indexPath: IndexPath) {
+        cellDelegate?.pageEndReached()
+    }
+
     #if canImport(AppKit)
     public func collectionView(_ collectionView: CACollectionView, itemForRepresentedObjectAt indexPath: IndexPath) -> CACollectionViewCell {
         collectionView.makeItem(withIdentifier: .init(cellId), for: indexPath)
