@@ -96,7 +96,7 @@ open class CAListView<
     }
 
     public func collectionView(_ collectionView: CACollectionView, willDisplaySupplementaryView view: CACollectionReusableView, forElementKind elementKind: String, at indexPath: IndexPath) {
-        cellDelegate?.pageEndReached()
+        cellDelegate?.onPageEndReached()
     }
 
     #if canImport(AppKit)
