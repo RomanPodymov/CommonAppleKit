@@ -12,13 +12,14 @@ import CoreGraphics
 #if canImport(AppKit)
 open class CAScrollableListView<
     Cell: CAListViewCell<CellRootView>,
+    Header: CACollectionReusableView,
     Footer: CACollectionReusableView,
     CellRootView,
     CellDataType
 >: CAScrollView {
     public var content: [CellDataType] = [] {
         didSet {
-            (documentView as? CAListView<Cell, Footer, CellRootView, CellDataType>)?.content = content
+            (documentView as? CAListView<Cell, Header, Footer, CellRootView, CellDataType>)?.content = content
         }
     }
 
@@ -27,21 +28,25 @@ open class CAScrollableListView<
         itemSize: CGSize,
         minimumInteritemSpacing: CGFloat = 0,
         minimumLineSpacing: CGFloat = 0,
+        headerReferenceSize: CGSize = .zero,
         footerReferenceSize: CGSize = .zero,
         cellId: String = .init(describing: Cell.self),
-        cellDelegate: CAListViewCellDelegate? = nil,
-        footerId: String = .init(describing: Footer.self)
+        headerId: String = .init(describing: Header.self),
+        footerId: String = .init(describing: Footer.self),
+        cellDelegate: CAListViewCellDelegate? = nil
     ) {
         super.init(frame: frame)
-        let listView = CAListView<Cell, Footer, CellRootView, CellDataType>(
+        let listView = CAListView<Cell, Header, Footer, CellRootView, CellDataType>(
             frame: frame,
             itemSize: itemSize,
             minimumInteritemSpacing: minimumInteritemSpacing,
             minimumLineSpacing: minimumLineSpacing,
+            headerReferenceSize: headerReferenceSize,
             footerReferenceSize: footerReferenceSize,
             cellId: cellId,
-            cellDelegate: cellDelegate,
-            footerId: footerId
+            headerId: headerId,
+            footerId: footerId,
+            cellDelegate: cellDelegate
         )
         documentView = listView
     }
