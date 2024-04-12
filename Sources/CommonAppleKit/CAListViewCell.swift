@@ -11,7 +11,8 @@ import Foundation
 public protocol CAListViewCellDelegate: AnyObject {
     func onCellTap(data: Any?)
     func onAction(data: Any?)
-    func onPageEndReached()
+    func onHeaderWillBeDisplayed()
+    func onFooterWillBeDisplayed()
 }
 
 open class CAListViewCell<RootView: CAView>: CACollectionViewCell {

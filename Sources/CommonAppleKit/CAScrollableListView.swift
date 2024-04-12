@@ -53,10 +53,11 @@ open class CAScrollableListView<
 #elseif canImport(UIKit)
 open class CAScrollableListView<
     Cell: CAListViewCell<CellRootView>,
+    Header: CACollectionReusableView,
     Footer: CACollectionReusableView,
     CellRootView,
     CellDataType
->: CAListView<Cell, Footer, CellRootView, CellDataType> {
+>: CAListView<Cell, Header, Footer, CellRootView, CellDataType> {
     open var documentView: CAView? {
         self
     }

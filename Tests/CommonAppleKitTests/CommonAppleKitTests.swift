@@ -31,6 +31,8 @@ private final class CellARootView: CAView {
     fileprivate weak var cell: CellA?
 }
 
+private final class HeaderA: CACollectionReusableView { }
+
 private final class FooterA: CACollectionReusableView { }
 
 private final class ViewA: CAView {
@@ -130,12 +132,39 @@ final class CommonAppleKitTests: XCTestCase {
     }
 
     func testListView() {
-        let listView = CAListView<CellA, FooterA, CellARootView, String>(frame: .init(x: 0, y: 0, width: 300, height: 500), itemSize: .init(width: 200, height: 100), cellId: "id", cellDelegate: self)
+        let listView = CAListView<CellA, HeaderA, FooterA, CellARootView, String>(
+            frame: .init(
+                x: 0,
+                y: 0,
+                width: 300,
+                height: 500
+            ),
+            itemSize: .init(
+                width: 200,
+                height: 100
+            ),
+            cellId: "id",
+            cellDelegate: self
+        )
         listView.content = ["one", "two"]
     }
 
     func testScrollableListView() {
-        let listView = CAScrollableListView<CellA, FooterA, CellARootView, Int>(frame: .zero, itemSize: .init(width: 200, height: 100))
+        let listView = CAScrollableListView<CellA, HeaderA, FooterA, CellARootView, Int>(
+            frame: .zero,
+            itemSize: .init(
+                width: 200,
+                height: 100
+            ),
+            headerReferenceSize: .init(
+                width: 300,
+                height: 400
+            ),
+            footerReferenceSize: .init(
+                width: 300,
+                height: 400
+            )
+        )
         listView.content = [1, 2]
     }
 }
@@ -149,7 +178,11 @@ extension CommonAppleKitTests: CAListViewCellDelegate {
 
     }
 
-    func onPageEndReached() {
+    func onHeaderWillBeDisplayed() {
+
+    }
+
+    func onFooterWillBeDisplayed() {
 
     }
 }
