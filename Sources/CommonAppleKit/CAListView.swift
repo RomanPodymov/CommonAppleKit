@@ -39,6 +39,13 @@ open class CAListView<
     }
     #endif
 
+    public var footerReferenceSize: CGSize {
+        didSet {
+            (self.collectionViewLayout as? CACollectionViewFlowLayout)?.footerReferenceSize = footerReferenceSize
+            // self.collectionViewLayout.invalidateLayout()
+        }
+    }
+
     public init(
         frame: CGRect,
         itemSize: CGSize,
@@ -55,6 +62,9 @@ open class CAListView<
         self.headerId = headerId
         self.footerId = footerId
         self.cellDelegate = cellDelegate
+
+        self.footerReferenceSize = footerReferenceSize
+
         let layout = CACollectionViewFlowLayout()
         layout.itemSize = itemSize
         layout.minimumInteritemSpacing = minimumInteritemSpacing
