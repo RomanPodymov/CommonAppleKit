@@ -42,7 +42,6 @@ open class CAListView<
     public var footerReferenceSize: CGSize {
         didSet {
             (self.collectionViewLayout as? CACollectionViewFlowLayout)?.footerReferenceSize = footerReferenceSize
-            // self.collectionViewLayout.invalidateLayout()
         }
     }
 

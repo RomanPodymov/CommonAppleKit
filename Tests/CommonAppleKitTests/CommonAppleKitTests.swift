@@ -165,6 +165,7 @@ final class CommonAppleKitTests: XCTestCase {
                 height: 400
             )
         )
+        listView.footerReferenceSize = .init(width: 200, height: 100)
         listView.content = [1, 2]
     }
 }

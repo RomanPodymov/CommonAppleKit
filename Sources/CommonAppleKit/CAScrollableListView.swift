@@ -23,6 +23,8 @@ open class CAScrollableListView<
         }
     }
 
+    public var footerReferenceSize: CGSize = .zero
+
     public init(
         frame: CGRect,
         itemSize: CGSize,
