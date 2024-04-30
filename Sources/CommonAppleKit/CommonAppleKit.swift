@@ -257,8 +257,11 @@
         }
 
         var selectedViewController: CAViewController? {
-            get {
-                viewControllers?[selectedTabViewItemIndex]
+            guard selectedTabViewItemIndex >= 0 else {
+                return nil
+            }
+            return viewControllers.flatMap {
+                selectedTabViewItemIndex < $0.count ? $0[selectedTabViewItemIndex] : nil
             }
         }
     }
