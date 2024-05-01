@@ -9,8 +9,11 @@
 import Foundation
 
 public protocol CAListViewCellDelegate: AnyObject {
+    #if canImport(UIKit)
     func onCellTap(data: Any?)
+    #endif
     func onAction(data: Any?)
+
     func onHeaderWillBeDisplayed()
     func onFooterWillBeDisplayed()
 }

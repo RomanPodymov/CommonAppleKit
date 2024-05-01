@@ -171,10 +171,12 @@ final class CommonAppleKitTests: XCTestCase {
 }
 
 extension CommonAppleKitTests: CAListViewCellDelegate {
+    #if canImport(UIKit)
     func onCellTap(data: Any?) {
 
     }
-    
+    #endif
+
     func onAction(data: Any?) {
 
     }
